@@ -1,4 +1,5 @@
 # Installing packages in R
+# installo dal Cran
 # Cran è dove ci sono tutti i pacchetti. Ci sono anche dei pacchetti su GitHub
 # Cerco su internet il pacchetto esempio pacchetto terra
 

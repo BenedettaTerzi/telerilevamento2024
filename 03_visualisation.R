@@ -71,7 +71,7 @@ plot(b4,col=clch)
 plot(b8,col=clch)
 
 # ora le bande le considero come elementi di un unico array (le concateno insieme) e creo un'immagine satellitare (uno stack di n bande)
-# uso la funzione stack
+# uso la funzione concatenate quindi
 stacksent<-c(b2,b3,b4,b8)
 plot(stacksent,col=clch)
 
@@ -79,4 +79,31 @@ plot(stacksent,col=clch)
 # gli elementi si selezionano con le parentesi quadre 
 plot(stacksent[[4]],col=clch)
 # usiamo due parentesi quadre nel pacchetto raster e terra perchè siamo in due dimensioni
-# uso la funzione dev.off() se voglio eliminare/chiudere qualcosa = close a plotting 
+# uso la funzione dev.off() se voglio eliminare/chiudere qualcosa = close a plotting device
+
+# la funzione im.import() serve ad importare dati 
+# ora le bande le considero come elementi di un unico array (le concateno insieme) e creo un'immagine satellitare (uno stack di n bande) mutispettrale 
+# uso la funzione concatenate quindi
+stacksent<-c(b2,b3,b4,b8)
+plot(stacksent)
+
+# vogliamo plottare uno solo di questi 4 elementi
+# prima uso dev.off() per chiudere un device
+dev.off()
+# poi scrivo plot(stacksent[[4]]) 
+plot(stacksent[[4]])
+
+#RGB plotting
+# stacksent[[1]] =  b2 = blue 
+# stacksent[[2]] =  b3 = verde
+# stacksent[[3]] =  b4 = rosso
+# stacksent[[4]] =  b8 = vicino infrarosso
+
+# uso la funzione im.plotRGB() dove dichiaro il nome dell'immagine e le tre componenti RGB
+# associo ad ogni componente la relativa banda quindi R=3, G=2 e B=1 
+im.plotRGB(stacksent,3,2,1)
+im.plotRGB(stacksent,4,2,1)
+# tutto quello riflette nell'infrarosso lo vedo rosso 
+
+
+

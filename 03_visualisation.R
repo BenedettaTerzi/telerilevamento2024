@@ -97,7 +97,7 @@ plot(stacksent[[4]])
 # stacksent[[1]] =  b2 = blue 
 # stacksent[[2]] =  b3 = verde
 # stacksent[[3]] =  b4 = rosso
-# stacksent[[4]] =  b8 = vicino infrarosso
+# stacksent[[4]] =  b8 = vicino infrarosso (nir in inglese)
 
 # uso la funzione im.plotRGB() dove dichiaro il nome dell'immagine e le tre componenti RGB
 # associo ad ogni componente la relativa banda quindi R=3, G=2 e B=1 
@@ -105,5 +105,23 @@ im.plotRGB(stacksent,3,2,1)
 im.plotRGB(stacksent,4,2,1)
 # tutto quello riflette nell'infrarosso lo vedo rosso 
 
+# sostituisco tutto e scrivo im.plotRGB(stacksent,4,3,2)
+im.plotRGB(stacksent,4,3,2)
+# è praticamente uguale a prima, ma quella che regola i colori è quella meno collegata alle altre bande (infrarosso in questo caso)
+# lo sostituisco al verde
+im.plotRGB(stacksent,3,4,2)
+# lo sostituisco al blu = se voglio evidenziare il suolo nudo che diventa giallo 
+im.plotRGB(stacksent,3,2,4)
 
+# faccio un multiframe
+par(mfrow=c(2,2))
+plot(im.plotRGB(stacksent,3,2,1)) # natural colors 
+plot(im.plotRGB(stacksent,4,2,1)) # nir on red 
+plot(im.plotRGB(stacksent,3,4,2)) # nir on green
+plot(im.plotRGB(stacksent,3,2,4)) # nir on blue 
 
+# correlazione di informazioni 
+# uso la funzione pairs()
+pairs(stacksent)
+
+# in ordine in diagonale abbiamo le bande blu, verde, rosso e nir (quelli verdi) poi in nero le mette in correlazione due a due e i numeri sono l'indice di correlazione lineare di pearson (che va da -1 a 1)

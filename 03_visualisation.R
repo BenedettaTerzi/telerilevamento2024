@@ -124,4 +124,9 @@ plot(im.plotRGB(stacksent,3,2,4)) # nir on blue
 # uso la funzione pairs()
 pairs(stacksent)
 
-# in ordine in diagonale abbiamo le bande blu, verde, rosso e nir (quelli verdi) poi in nero le mette in correlazione due a due e i numeri sono l'indice di correlazione lineare di pearson (che va da -1 a 1)
+# correlazione di informazioni 
+# uso la funzione pairs()
+pairs(stacksent)
+
+# in diagonale abbiamo le bande blu, verde, rosso e nir (quelli verdi) poi in nero le mette in correlazione due a due e i numeri sono l'indice di correlazione lineare di pearson (che va da -1 a 1)
+

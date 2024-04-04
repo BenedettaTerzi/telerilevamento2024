@@ -38,3 +38,35 @@ im.plotRGB(m2006,1,2,3)
 im.plotRGB(m2006,2,1,3)
 im.plotRGB(m2006,2,3,1)
 
+# Calculating the DVI (Difference Vegetation Inex)
+# la risoluzione radiometrica in quetso caso è 8 bit (256 valori, 8^2) ed il valore va da -255 (0-255 se minimo NIR e massimo Red) a +255 (255-0 se massimo NIR e minimo Red) ovvero faccio NIR - Red
+# per ogni pixel ottengo un valore quindi per un'immagine satellitare avrò il minimo e il massimo
+dvi1992 = m1992[[1]]- m1992[[2]]
+# scrivo uguale perchè è un calcolo matematico 
+# sottraiamo la banda numero 1 e la banda numero 2, il primo e il secondo elemento dell'immagine satellitare
+
+m1992<-im.import("matogrosso_l5_1992219_lrg.jpg")
+dvi1992 = m1992[[1]]- m1992[[2]]
+dvi1992
+# valore minimo -246 valore massimo 255
+cl<-colorRampPalette(c("darkblue","yellow", "red", "black"))(100)
+plot(dvi1992, col=cl)
+
+m2006<-im.import("matogrosso_ast_2006209_lrg.jpg")
+dvi2006 = m2006[[1]]- m2006[[2]]
+dvi2006
+# valore minimo -197 valore massimo 255
+plot(dvi2006, col=cl)
+# mi rappresenta la biomassa
+
+# se io ho 4 bit (16 valori, 4^2) il DVI va da -15 a 15
+# per fare delle comparazioni uso il NDVI (Normalized Difference Vegetation Inex) quindi faccio (NIR - Red) / (NIR + Red) e questo varia tra -1 a 1 
+# posso confrontare quindi immagini con bit diversi
+
+# NDVI 
+ndvi1992 = dvi1992 / (m1992[[1]] + m1992[[2]])
+ndvi2006 = dvi2006 / (m2006[[1]] + m2006[[2]])
+par(mfrow=c(1,2))
+plot(ndvi1992, col=cl)
+plot(ndvi2006, col=cl)
+

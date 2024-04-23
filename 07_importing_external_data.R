@@ -24,3 +24,5 @@ plot(soil[[1]])
 #crop data (uso coordinate per tagliare una immagine)
 ext <- c(25,30,55,58) # mi rappresentano x minima x massima y minima y massima in un array per definire l'estensione 
 soilcrop<-crop(soil,ext)
+
+# con terra possiamo importare tutti i formati 

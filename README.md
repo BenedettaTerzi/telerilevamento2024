@@ -10,3 +10,5 @@ Remote sensing lectures at UNIBO 📡
 
 ## CODE
 ```{r}
+library(imageRy)
+```

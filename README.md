@@ -8,3 +8,5 @@ Remote sensing lectures at UNIBO 📡
 
 > **NOTA**
 
+## CODE
+{r}

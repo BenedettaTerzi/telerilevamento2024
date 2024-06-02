@@ -150,12 +150,12 @@ plot(ndvi23, col=viridis(100))
 
 dev.off()
 
-##per meglio visualizzare possiamo creare un istogramma con i pixel e i valori di NDVI 
-         
+##per meglio visualizzare possiamo creare un istogramma con la percentuale di pixel e i valori di NDVI 
+
 par(mfrow=c(1,2))
          
-hist(ndvi15, main="NDVI 2015", nclass = 20, xlab="ndvi")
-hist(ndvi23, main="NDVI 2023", nclass = 20, xlab=“ndvi")
+hist(ndvi15, main="ndvi2015", nclass = 20, xlab="ndvi")
+hist(ndvi23, main="ndvi2023", nclass = 20, xlab=“ndvi")
 
 ##main è il nome del grafico, class il numero di classi, xlab il nome della variabile di x, ylab non l’ho messa perché di default mette frequenza (il numero di pixel appartenente a quella classe)
 ##con freq=F ci restituisce la density non su 100 ma su 10
@@ -163,10 +163,13 @@ hist(ndvi23, main="NDVI 2023", nclass = 20, xlab=“ndvi")
 
 dev.off()
 
-ist15<-hist(ndvi15, main="NDVI 2015", nclass = 20, xlab="ndvi")
-ist23<-hist(ndvi23, main="NDVI 2023", nclass = 20, xlab="ndvi")
+ist15<-hist(ndvi15)
+ist23<-hist(ndvi23)
 
 dev.off()
+
+ist15
+ist23
 
 perc_nvdi15 = 100/sum(ist15$counts)
 ist15$counts = ist15$counts * perc_nvdi15
@@ -175,8 +178,9 @@ perc_nvdi23 = 100/sum(ist23$counts)
 ist23$counts = ist23$counts * perc_nvdi23
 
 par(mfrow=c(1,2))
-plot(ist15, main="NDVI 2015", xlab="ndvi",ylab="percentuale")
-plot(ist23, main="NDVI 2023", xlab="ndvi",ylab="percentuale")
-         
-dev.off() 
+plot(ist15,main="ndvi2015",xlab="ndvi",ylab="perc.",nclass=20)
+plot(ist23,main=“ndvi2023",xlab="ndvi",ylab="perc.",nclass=20)
+
+dev.off()
+           
 

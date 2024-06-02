@@ -150,23 +150,24 @@ plot(ndvi23, col=viridis(100))
 
 dev.off()
 
-##per meglio visualizzare possiamo creare un istogramma con la percentuale di pixel e i valori di NDVI 
-
-ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20)
-ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20)
-
-##main è il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, ylab non l’ho messa perché di default mette frequenza (il numero di pixel appartenente a quella classe)
-##con freq=F ci restituisce la density (non è la percentuale ma su 10) e ylab di default è density
-
-dev.off()
-
+ ##per meglio visualizzare possiamo creare un istogramma con la percentuale di pixel e i valori di NDVI 
+        
 par(mfrow=c(1,2))
-plot(ist15)
-plot(ist23)
-
-##NDVI nel complesso leggermente calato
-     
+ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F)
+ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F) 
+      
+##main è il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
+##con freq=F ci restituisce density (non è la percentuale ma su 10) e ylab di default è density
+         
 dev.off()
+
+##conclusioni finali
+##copertura forestale calata di valori non elevati (3% circa)
+##NDVI nel complesso leggermente calato
+           
+
+           
+       
 
            
 

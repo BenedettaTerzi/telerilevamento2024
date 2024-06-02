@@ -153,8 +153,8 @@ dev.off()
  ##per meglio visualizzare possiamo creare un istogramma con la percentuale di pixel e i valori di NDVI 
         
 par(mfrow=c(1,2))
-ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F)
-ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F) 
+ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
+ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
       
 ##main è il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
 ##con freq=F ci restituisce density (non è la percentuale ma su 10) e ylab di default è density

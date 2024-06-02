@@ -1,5 +1,5 @@
-##R_code_exam
-#questo codice è stato scritto utilizzando i seguenti pacchetti prima installati.
+
+##questo codice è stato scritto utilizzando i seguenti pacchetti prima installati.
 
 library(terra)   ##pacchetto R specializzato in metodi per l'analisi di dati spaziali
 library(imageRy)  ##pacchetto R specializzato nella manipolazione e condivisione di immagini raster 
@@ -179,3 +179,4 @@ plot(ist15, main="NDVI 2015", xlab="ndvi",ylab="percentuale")
 plot(ist23, main="NDVI 2023", xlab="ndvi",ylab="percentuale")
          
 dev.off() 
+

@@ -150,7 +150,7 @@ plot(ndvi23, col=viridis(100))
 
 dev.off()
 
-##per meglio visualizzare possiamo creare un istogramma con il numero di pixel che appartengono ai vari valori di NDVI 
+##per meglio visualizzare possiamo creare un istogramma con i pixel e i valori di NDVI 
          
 par(mfrow=c(1,2))
          

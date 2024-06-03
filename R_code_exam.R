@@ -49,7 +49,7 @@ bb23<-v23[[3]]
 bi23<-v23f[[1]]
 band23<-c(br23,bg23,bb23,bi23)
 
-##posso spostare il nir sulle tre bande 
+##posso spostare il nir sulle altre tre bande 
 ##uso la funzione, del pacchetto imageRy, im.plotRGB() e devo dichiarare il nome dell'immagine e le tre componenti RGB quindi associo ad ogni componente la relativa banda 
 
 par(mfrow=c(3,2))
@@ -72,9 +72,8 @@ im.plotRGB.auto(band23)
 
 dev.off()
 
-##classificazione di un'immagine e calcolo frequenza di ciascuna classe, numero totale di
-celle (pixel), proporzione e percentuale dei cluster
-##si utilizza la funzione im.classify(), funzione del pacchetto imageRy, dichiarando l'immagine e il numero di clusters, in questo caso sono 2 uomo, vegetazione
+##classificazione di un'immagine e calcolo frequenza di ciascuna classe, numero totale di celle (pixel), proporzione e percentuale dei cluster
+##si utilizza la funzione im.classify(), funzione del pacchetto imageRy, dichiarando l'immagine e il numero di clusters, in questo caso sono 2 uomo e vegetazione
 
 band15c<-im.classify(band15,num_clusters=2)
 band23c<-im.classify(band23,num_clusters=2)  ##classificazione delle immagini 
@@ -97,7 +96,7 @@ perc23=prop23*100
 tot15
 tot23 ##numero di pixel totale è lo stesso 
 
-##creazione del data frame con i dati
+##creazione del dataframe con i dati
 datav <- data.frame(
      anno = c(2015, 2015, 2023, 2023),
      classe = c("uomo", "foresta", "uomo", "foresta"),
@@ -135,7 +134,7 @@ plot(dvi23, col=cl)
 
 dev.off()
 
-##per fare delle comparazioni uso il NDVI (Normalized Difference Vegetation Index) quindi faccio (NIR - Red) / (NIR + Red) ovvero ndvi/ / (NIR + Red)  e varia tra -1 e 1 
+##per fare delle comparazioni uso il NDVI (Normalized Difference Vegetation Index) quindi faccio (NIR - Red) / (NIR + Red) ovvero ndvi / (NIR + Red)  e varia tra -1 e 1 
 ##posso confrontare quindi immagini con bit diversi 
 
 par(mfrow=c(2,2))
@@ -156,8 +155,8 @@ par(mfrow=c(1,2))
 ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
 ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
 ##main è il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
-##con freq=F ci restituisce density (non è la percentuale ma su 10) e ylab di default è density
-         
+##con freq=F ci restituisce density (non è la percentuale ma è su 10)
+
 dev.off()
 
 ##conclusioni finali
@@ -188,13 +187,14 @@ dev.off()
 ##correlazione delle informazioni 
 ##posso usare la funzione pairs() per visualizzare la correlazione tra le quattro bande, le mette in correlazione due a due calcola indice di correlazione lineare di Pearson che va da -1 a 1 
 pairs(band15)
-pairs(band23) ## vediamo che la correlazione è elevata per entrambe le immagini
+pairs(band23)
+##vediamo che le correlazioni sono abbastanza elevate per entrambe le immagini
 ##si guarda se le bande sono correlate prima di procede all’analisi PCA
 
 dev.off()
 
 ##analisi multivariata
-##non voglio scegliere la banda allora faccio analisi delle componenti principali (PCA)
+##se non riesco a scegliere personalmente la banda posso fare analisi delle componenti principali (PCA)
 ##uso la funzione im.pca()
 
 pcimage15<-im.pca(band15) ##di default come immagini mi da le prime 3 PC
@@ -223,10 +223,10 @@ tot23 ##105.1276
 
 dev.off()
 
-##misura della variabilità/eterogeneità dello spazio con metodo moving window 
+##metodo moving window 
 
 pca15<-pcimage15[[1]] ##assegno la prima componente della PCA ad un oggetto
-sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd) ##metodo moving window sulla prima componente della PCA, quella che spiega la maggiore variabilità 
+sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd) ##metodo moving window sulla prima componente della PCA ovvero quella che spiega la maggiore variabilità 
 
 pca23<-pcimage23[[1]]
 sd3pca23<-focal(pca23,matrix(1/9,3,3), fun=sd)
@@ -235,6 +235,7 @@ par(mfrow=c(1,2))
 plot(sd3pca15, col=viridis(100))
 plot(sd3pca23, col=viridis(100))
 ##non ci sono differenze notevoli con la variabilità calcolata sul nir e non ci sono differenze notevoli tra i due anni
+
 
 
            

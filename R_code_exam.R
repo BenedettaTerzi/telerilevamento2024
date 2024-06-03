@@ -227,15 +227,15 @@ dev.off()
 
 pca15<-pcimage15[[1]] ##assegno la prima componente della PCA ad un oggetto
 sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd) ##metodo moving window sulla prima componente della PCA, quella che spiega la maggiore variabilità 
-plot(sd3pca15, col=viridis(100))
 
 pca23<-pcimage23[[1]]
 sd3pca23<-focal(pca23,matrix(1/9,3,3), fun=sd)
-plot(sd3pca23, col=viridis(100))
 
+par(mfrow=c(1,2))
+plot(sd3pca15, col=viridis(100))
+plot(sd3pca23, col=viridis(100))
 ##non ci sono differenze notevoli con la variabilità calcolata sul nir e non ci sono differenze notevoli tra i due anni
 
-       
 
            
 

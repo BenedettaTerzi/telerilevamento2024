@@ -1,5 +1,4 @@
-
-##questo codice è stato scritto utilizzando i seguenti pacchetti prima installati.
+#questo codice è stato scritto utilizzando i seguenti pacchetti prima installati.
 
 library(terra)   ##pacchetto R specializzato in metodi per l'analisi di dati spaziali
 library(imageRy)  ##pacchetto R specializzato nella manipolazione e condivisione di immagini raster 
@@ -122,6 +121,7 @@ ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) +
 
 ##calcolo DVI (Difference Vegetation Index) e NDVI (normalized difference vegetation index)
 ##indice usato per calcolare salute e densità della vegetazione, si usano due bande nir e rosso (o nir e blu)
+##lo calcolo facendo (NIR - Red)
 
 cl<- colorRampPalette(c("black","white","red"))(100) ## crea una scala di colori che va dal nero al bianco al rosso con 100 gradazioni
 
@@ -129,20 +129,19 @@ par(mfrow=c(1,2))
 
 dvi15 = band15[[4]]-band15[[1]]
 plot(dvi15, col=cl) 
-##la risoluzione radiometrica in questo caso è 8 bit (256 valori, 8^2) ed il valore va da -255 (0-255 se minimo NIR e massimo Red) a +255 (255-0 se massimo NIR e minimo Red) ovvero faccio NIR - Red
 dvi23 = band23[[4]]-band23[[1]]
 plot(dvi23, col=cl)
 
 dev.off()
 
-##per fare delle comparazioni uso il NDVI (Normalized Difference Vegetation Index) quindi faccio (NIR - Red) / (NIR + Red) e questo varia tra -1 e 1 
+##per fare delle comparazioni uso il NDVI (Normalized Difference Vegetation Index) quindi faccio (NIR - Red) / (NIR + Red) ovvero ndvi/ / (NIR + Red)  e varia tra -1 e 1 
 ##posso confrontare quindi immagini con bit diversi 
 
 par(mfrow=c(2,2))
 
 ndvi15 = dvi15/(band15[[4]]+band15[[1]]) 
 plot(ndvi15, col=cl)
-plot(ndvi15, col=viridis(100)) ##lo plotto con una palette colorblind-friendly
+plot(ndvi15, col=viridis(100)) ##lo plotto con una palette adatta alle persone con daltonismo
 
 ndvi23 = dvi23/(band23[[4]]+band23[[1]]) 
 plot(ndvi23, col=cl)
@@ -157,14 +156,13 @@ ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
 ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
       
 ##main è il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
-##con freq=F ci restituisce density (non è la percentuale ma su 10) e ylab di default è density
+##con freq=F ci restituisce density (non è la percentuale ma su 10) 
          
 dev.off()
 
 ##conclusioni finali
 ##copertura forestale calata di valori non elevati (3% circa)
 ##NDVI nel complesso leggermente calato
-           
 
            
        

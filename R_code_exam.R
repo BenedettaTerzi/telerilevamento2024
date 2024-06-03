@@ -336,7 +336,7 @@ dev.off()
 nir15<-band15[[4]] ## assegno la banda nir, la quarta, ad un oggetto
 sd3nir15<-focal(nir15,matrix(1/9,3,3), fun=sd) ##uso la funzione focal()
 
-## focal() mi permette di calcolare la variabilità, definisco la matrice (la finestra) in questo caso 9 pixel disposti 3x3 pixel e anche la statistica che uso in questo caso fun=sd (function = standard deviation)
+##focal() mi permette di calcolare la variabilità, definisco la matrice (la finestra) in questo caso 9 pixel disposti 3x3 pixel e anche la statistica che uso in questo caso fun=sd (function = standard deviation)
 ##la dimensione della finestra la scelgo io 
 
 ##faccio la stessa cosa con l’immagine del 2023
@@ -389,8 +389,10 @@ tot23 ##105.1276
 
 dev.off()
 
-pca15<-pcimage15[[1]]
-sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd)
+##misura della variabilità/eterogeneità dello spazio con metodo moving window 
+
+pca15<-pcimage15[[1]] ##assegno la prima componente della PCA ad un oggetto
+sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd) ##metodo moving window sulla prima componente della PCA, quella che spiega la maggiore variabilità 
 plot(sd3pca15, col=viridis(100))
 
 pca23<-pcimage23[[1]]

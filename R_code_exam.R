@@ -239,8 +239,6 @@ plot(sd3pca23, col=turbo(100))
 ##non ci sono differenze notevoli con la variabilità calcolata sul nir e non ci sono differenze notevoli tra i due anni
 
 
-
-
            
 
           

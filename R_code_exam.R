@@ -121,6 +121,7 @@ ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) +
 ##calcolo DVI (Difference Vegetation Index) e NDVI (normalized difference vegetation index)
 ##indice usato per calcolare salute e densità della vegetazione, si usano due bande nir e rosso (o nir e blu)
 ##lo calcolo facendo (NIR - Red)
+##faccio una differenza, un’operazione matematica di sottrazione di pixel di una banda da un’altra banda
 ##siccome l’immagine ha 8 bit (2^8 = 256) i valori possono andare da -255 a +255 
 
 cl<- colorRampPalette(c("black","white","red"))(100) ## crea una scala di colori che va dal nero al bianco al rosso con 100 gradazioni
@@ -149,11 +150,23 @@ plot(ndvi23, col=turbo(100))
 
 dev.off()
 
+##Differenza di NDVI 
+##valori positivi significa NDVI aumentato dal 2015 al 2023
+##valori negativi significa NDVI è diminuito
+##valori simili a zero: no cambiamenti nella vegetazione
+
+difNDVI = ndvi23 - ndvi15
+par(mfrow=c(1,2))
+plot(difNDVI, col=cl)
+plot(difNDVI,col=turbo(100))
+
 ##per meglio visualizzare possiamo creare un istogramma con la percentuale di pixel e i valori di NDVI 
 
+dev.off()
+
 par(mfrow=c(1,2))
-ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
-ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5))
+ist15<-hist(ndvi15, main="ndvi2015", xlab=“ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
+ist23<-hist(ndvi23, main="ndvi2023", xlab=“ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
 ##main è il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
 ##con freq=F ci restituisce density (non è la percentuale ma è su 10)
 
@@ -237,10 +250,4 @@ par(mfrow=c(1,2))
 plot(sd3pca15, col=turbo(100))
 plot(sd3pca23, col=turbo(100))
 ##non ci sono differenze notevoli con la variabilità calcolata sul nir e non ci sono differenze notevoli tra i due anni
-
-
-           
-
-          
-           
 

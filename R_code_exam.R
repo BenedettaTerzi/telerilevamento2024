@@ -174,7 +174,7 @@ dev.off()
 
 ##conclusioni finali
 ##copertura forestale calata di valori non elevati (3% circa)
-##NDVI nel complesso leggermente calato
+##NDVI nel complesso no variazioni significative
 
 ##misura della variabilità/eterogeneità dello spazio con metodo moving window 
 

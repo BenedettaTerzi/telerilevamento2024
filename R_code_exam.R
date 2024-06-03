@@ -141,11 +141,11 @@ par(mfrow=c(2,2))
 
 ndvi15 = dvi15/(band15[[4]]+band15[[1]]) 
 plot(ndvi15, col=cl)
-plot(ndvi15, col=viridis(100)) ##lo plotto con una palette adatta alle persone con daltonismo
+plot(ndvi15, col=turbo(100)) ##lo plotto con una palette adatta alle persone con daltonismo
 
 ndvi23 = dvi23/(band23[[4]]+band23[[1]]) 
 plot(ndvi23, col=cl)
-plot(ndvi23, col=viridis(100))
+plot(ndvi23, col=turbo(100))
 
 dev.off()
 
@@ -177,8 +177,8 @@ nir23<-band23[[4]]
 sd3nir23<-focal(nir23,matrix(1/9,3,3), fun=sd)
 
 par(mfrow=c(1,2))
-plot(sd3nir15, col=viridis(100))
-plot(sd3nir23, col=viridis(100))
+plot(sd3nir15, col=turbo(100))
+plot(sd3nir23, col=turbo(100))
 
 ##non c’è una elevata differenza tra il 2015 e il 2023
 
@@ -201,7 +201,8 @@ pcimage15<-im.pca(band15) ##di default come immagini mi da le prime 3 PC
 
 ##calcolo della percentuale di variabilità spiegata dall'asse 
 
-tot15<-sum(61.735712, 27.537533, 5.865115, 3.025104) ##sommo le componenti principali delle 4 bande, una componente principale per ogni banda, poi calcolo la percentuale di variabilità spiegata dagli assi 
+tot15<-sum(61.735712, 27.537533, 5.865115, 3.025104)
+##sommo le componenti principali delle 4 bande, una componente principale per ogni banda, poi calcolo la percentuale di variabilità spiegata dagli assi 
 
 tot15 ## 98.16346 
 
@@ -226,15 +227,17 @@ dev.off()
 ##metodo moving window 
 
 pca15<-pcimage15[[1]] ##assegno la prima componente della PCA ad un oggetto
-sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd) ##metodo moving window sulla prima componente della PCA ovvero quella che spiega la maggiore variabilità 
+sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd)
+##metodo moving window sulla prima componente della PCA ovvero quella che spiega la maggiore variabilità 
 
 pca23<-pcimage23[[1]]
 sd3pca23<-focal(pca23,matrix(1/9,3,3), fun=sd)
 
 par(mfrow=c(1,2))
-plot(sd3pca15, col=viridis(100))
-plot(sd3pca23, col=viridis(100))
+plot(sd3pca15, col=turbo(100))
+plot(sd3pca23, col=turbo(100))
 ##non ci sono differenze notevoli con la variabilità calcolata sul nir e non ci sono differenze notevoli tra i due anni
+
 
 
 

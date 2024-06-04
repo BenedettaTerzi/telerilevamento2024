@@ -11,8 +11,8 @@
 # install.packages("patchwork")
 # install.packages("viridis")
 
-library(terra)   # pacchetto R specializzato in metodi per l'analisi di dati spaziali
-library(imageRy)  # pacchetto R specializzato nella manipolazione e condivisione di immagini raster 
+library(terra)   # pacchetto R specializzato in metodi per l'analisi di dati spaziali, manipolazione e analisi di dati geografici
+library(imageRy)  # pacchetto R specializzato nella manipolazione , analisi e condivisione di immagini raster 
 library(ggplot2)   # pacchetto R specializzato nella creazione di grafici
 library(patchwork)  # pacchetto R specializzato nella composizioni di più grafici
 library(viridis) # pacchetto R per l’utilizzo di palette di colori Colorblind-Friendly

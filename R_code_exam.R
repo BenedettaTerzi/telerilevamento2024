@@ -85,6 +85,7 @@ dev.off()
 # classificazione di un'immagine e calcolo frequenza di ciascuna classe, numero totale di celle (pixel), proporzione e percentuale dei cluster
 # si utilizza la funzione im.classify(), funzione del pacchetto imageRy, dichiarando l'immagine e il numero di clusters, in questo caso sono 2 uomo e vegetazione
 # vengono create delle classi/clusters in base al comportamento dei pixel (riflettanza), i pixel vengono estratti casualmente quindi quale colore è associato a ciascuna classe è casuale 
+
            
 band15c<-im.classify(band15,num_clusters=2)
 band23c<-im.classify(band23,num_clusters=2)  # classificazione delle immagini 
@@ -113,7 +114,7 @@ datav <- data.frame(
      classe = c("uomo", "foresta", "uomo", "foresta"),
      valori = c(35.5, 64.5, 38.1, 61.9))
  
-# creazione del grafico a barre con ggplot2
+# creazione del grafico con la funzione ggplot() del pacchetto ggplot2
 ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) +
      geom_bar(stat = "identity", position = "dodge") +
      labs(title = "Distribuzione classi per anno",

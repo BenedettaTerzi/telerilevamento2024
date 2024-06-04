@@ -84,8 +84,7 @@ dev.off()
 
 # classificazione di un'immagine e calcolo frequenza di ciascuna classe, numero totale di celle (pixel), proporzione e percentuale dei cluster
 # si utilizza la funzione im.classify(), funzione del pacchetto imageRy, dichiarando l'immagine e il numero di clusters, in questo caso sono 2 uomo e vegetazione
-# vengono create delle classi/clusters in base sulla riflettanza del pixel, il pixel di partenza è casuale quindi quale colore è associato a ciascuna classe è casuale 
-
+# vengono create delle classi/clusters in base al comportamento dei pixel (riflettanza), i pixel vengono estratti casualmente quindi quale colore è associato a ciascuna classe è casuale 
            
 band15c<-im.classify(band15,num_clusters=2)
 band23c<-im.classify(band23,num_clusters=2)  # classificazione delle immagini 
@@ -179,7 +178,7 @@ dev.off()
 par(mfrow=c(1,2))
 ist15<-hist(ndvi15, main="ndvi2015", xlab=“ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
 ist23<-hist(ndvi23, main="ndvi2023", xlab=“ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
-# main è il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
+# con main scelgo il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
 # con freq=F ci restituisce density (non è la percentuale ma è su 10)
 
 dev.off()

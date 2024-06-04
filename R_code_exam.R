@@ -122,7 +122,7 @@ ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) +
      theme_minimal()
 
 # aes(x = as.factor(anno), y = valori, fill = classe) specifica che anno è sull'asse x, valori sull'asse y, e le barre sono riempite in base alla classe
-# geom_bar(stat = "identity") uso geom_bar per creare grafico a barre e stat=identity per dire che i dati vengono usati così come sono e position = “dodge" per affiancare le barre 
+# geom_bar(stat = "identity", position = "dodge") uso geom_bar per creare grafico a barre e stat=identity specifica che i dati vengono usati così come sono e position = “dodge" per affiancare le barre 
 # labs(): Aggiunge i titoli e le etichette agli assi
 
 # in questo modo abbiamo analizzato cambiamenti nello spazio tramite classificazione

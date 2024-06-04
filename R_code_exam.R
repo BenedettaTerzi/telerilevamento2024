@@ -65,7 +65,7 @@ band23<-c(br23,bg23,bb23,bi23)
 par(mfrow=c(3,2))
 
 im.plotRGB(band15, 4,2,3) # infrarosso sul rosso
-im.plotRGB((band23, 4,2,3)
+im.plotRGB(band23, 4,2,3)
 
 im.plotRGB(band15, 1,4,3) # infrarosso sul verde
 im.plotRGB(band23, 1,4,3)
@@ -109,24 +109,24 @@ tot15
 tot23 # numero di pixel totale è lo stesso 
 
 # creazione del dataframe con i dati
-datav <- data.frame(
-     anno = c(2015, 2015, 2023, 2023),
-     classe = c("uomo", "foresta", "uomo", "foresta"),
-     valori = c(35.5, 64.5, 38.1, 61.9))
- 
+class<-c("uomo", "vegetazione")       
+y15<-c(35.5, 64.5)     
+y23<-c(38.1,61.9)
+datav<-data.frame(class,y15,y23)       
+           
 # creazione del grafico con la funzione ggplot() del pacchetto ggplot2
-ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) +
-     geom_bar(stat = "identity", position = "dodge") +
-     labs(title = "Distribuzione classi per anno",
-          x = "Anno",
-          y = "Valori percentuali",
-          fill = "Classe") +
-     theme_minimal()
+
+v2015 <-ggplot(datav,aes(x=class, y=y15, fill=class))+ geom_bar(stat="identity", color="black") + ylim(c(0, 100)) + scale_fill_manual(values = c("uomo" = "bisque4",  "vegetazione" = "forestgreen")) + labs(title="Distribuzione classi 2015")
+
+v2023 <-ggplot(datav,aes(x=class, y=y23, fill=class))+ geom_bar(stat="identity", color="black") + ylim(c(0, 100)) + scale_fill_manual(values = c("uomo" = "bisque4",  "vegetazione" = "forestgreen")) + labs(title="Distribuzione classi 2023")
 
 # aes(x = as.factor(anno), y = valori, fill = classe) specifica che anno è sull'asse x, valori sull'asse y, e le barre sono riempite in base alla classe
-# geom_bar(stat = "identity", position = "dodge") uso geom_bar per creare grafico a barre e position = "dodge" per affiancare le barre
+# geom_bar(stat = "identity") uso geom_bar per creare grafico a barre e stat=identity per dire che i dati vengono usati così come sono
 # labs(): Aggiunge i titoli e le etichette agli assi
-# theme_minimal(): uso tema grafico minimalista
+# "scale_fill_manual" permette di specificare manualmente i colori di riempimento delle barre tramite
+# "values=c" è un vettore che associa ai valori contenuti in "class" i colori
+
+v2015+v2023 # unisco i due grafici
 
 # in questo modo abbiamo analizzato cambiamenti nello spazio tramite classificazione
 
@@ -177,8 +177,8 @@ plot(difNDVI,col=turbo(100))
 dev.off()
 
 par(mfrow=c(1,2))
-ist15<-hist(ndvi15, main="ndvi2015", xlab=“ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
-ist23<-hist(ndvi23, main="ndvi2023", xlab=“ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
+ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
+ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
 # con main scelgo il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
 # con freq=F ci restituisce density (non è la percentuale ma è su 10)
 
@@ -259,4 +259,3 @@ par(mfrow=c(1,2))
 plot(sd3pca15, col=turbo(100))
 plot(sd3pca23, col=turbo(100))
 # non ci sono differenze notevoli con la variabilità calcolata sul nir e non ci sono differenze notevoli tra i due anni
-

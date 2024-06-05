@@ -108,22 +108,15 @@ perc23=prop23*100
 tot15
 tot23 # numero di pixel totale è lo stesso 
 
-# creazione del dataframe con i dati
-datav<-data.frame( anno = c(2015, 2015, 2023, 2023), classe = c("uomo", "foresta", "uomo", “foresta"), valori = c(35.5, 64.5, 38.1, 61.9))
-           
 # creazione del grafico con la funzione ggplot() del pacchetto ggplot2
 
-ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) +
-     geom_bar(stat = "identity", position = "dodge") +
-     labs(title = "Distribuzione classi per anno",
-          x = "Anno",
-          y = "Valori percentuali",
-          fill = "Classe") +
-     theme_minimal()
+ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) + geom_bar(stat = "identity", position = "dodge") + labs(title = "Distribuzione classi per anno", x = "Anno", y = "Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values = c("foresta" = "forestgreen", "uomo" = "darkslateblue")) + theme_bw()
 
 # aes(x = as.factor(anno), y = valori, fill = classe) specifica che anno è sull'asse x, valori sull'asse y, e le barre sono riempite in base alla classe
 # geom_bar(stat = "identity", position = "dodge") uso geom_bar per creare grafico a barre e stat=identity specifica che i dati vengono usati così come sono e position = “dodge" per affiancare le barre 
 # labs(): Aggiunge i titoli e le etichette agli assi
+# theme mi permette di scegliere il tema 
+# scale_fill_manual mi permette di scegliere manualmente i colori
 
 # in questo modo abbiamo analizzato cambiamenti nello spazio tramite classificazione
 

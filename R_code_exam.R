@@ -185,8 +185,9 @@ dev.off()
 nir15<-band15[[4]] # assegno la banda nir, la quarta, ad un oggetto
 sd3nir15<-focal(nir15,matrix(1/9,3,3), fun=sd) # uso la funzione focal()
 
-# focal() mi permette di calcolare la variabilità, definisco la matrice (la finestra) in questo caso 9 pixel disposti 3x3 pixel e anche la statistica che uso in questo caso fun=sd (function = standard deviation)
+# focal() mi permette di calcolare la variabilità, definisco la matrice (la finestra) in questo caso 9 pixel disposti 3x3 e  la statistica in questo caso fun=sd (function = standard deviation)
 # la dimensione della finestra la scelgo io 
+# la finestra calcola in questo caso la deviazione standard per i pixel presenti all’interno della finestra stessa e il valore viene assegnato al pixel centrale della finestra in un nuovo file raster poi si sposta e ripete il calcolo e così passa su tutta l’immagine
 
 # faccio la stessa cosa con l’immagine del 2023
 nir23<-band23[[4]]

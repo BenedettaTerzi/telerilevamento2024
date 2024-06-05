@@ -108,6 +108,9 @@ perc23=prop23*100
 tot15
 tot23 # numero di pixel totale è lo stesso 
 
+# creazione del dataframe con i dati
+datav<-data.frame( anno = c(2015, 2015, 2023, 2023), classe = c("uomo", "foresta", "uomo", "foresta"), valori = c(35.5, 64.5, 38.1, 61.9))
+
 # creazione del grafico con la funzione ggplot() del pacchetto ggplot2
 
 ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) + geom_bar(stat = "identity", position = "dodge") + labs(title = "Distribuzione classi per anno", x = "Anno", y = "Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values = c("foresta" = "forestgreen", "uomo" = "darkslateblue")) + theme_bw()

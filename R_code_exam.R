@@ -239,8 +239,6 @@ tot23 # 105.1276
 6.404655*100/tot23 # 6.09227 % di variabilità spiegata dal terzo asse
 3.408473*100/tot23 # 3.242226 % di variabilità spiegata dal quarto asse
 
-dev.off()
-
 # metodo moving window 
 pca15<-pcimage15[[1]] # assegno la prima componente della PCA ad un oggetto
 sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd)
@@ -248,6 +246,8 @@ sd3pca15<-focal(pca15,matrix(1/9,3,3), fun=sd)
 
 pca23<-pcimage23[[1]]
 sd3pca23<-focal(pca23,matrix(1/9,3,3), fun=sd)
+
+dev.off()
 
 par(mfrow=c(1,2))
 plot(sd3pca15, col=turbo(100))

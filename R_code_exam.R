@@ -167,13 +167,13 @@ plot(difNDVI,col=turbo(100))
 
 dev.off()
 
-# per meglio visualizzare possiamo creare un istogramma con la funzione hist() 
+# per meglio visualizzare possiamo creare un istogramma con la funzione hist() con il valore su base 10 di pixel e i valori di NDVI
 
 par(mfrow=c(1,2))
 ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
 ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
 # con main scelgo il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
-# con freq=F ci restituisce density (non è la percentuale ma è su 10)
+# con freq=F ci restituisce density (non è la percentuale ma il valore su base 10)
 
 dev.off()
 

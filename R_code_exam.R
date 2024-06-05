@@ -1,6 +1,6 @@
 # codice per l'analisi di cambiamenti ambientali nella zona di Villabassa in Val Pusteria(BZ)
-# questo codice è stato scritto utilizzando i seguenti pacchetti prima installati
-# installato i seguenti pacchetti, eccetto imageRy, dal CRAN con la funzione install.packages(), il pacchetto va inserito tra virgolette
+# questo codice è stato scritto utilizzando i seguenti pacchetti
+# installo i  pacchetti, eccetto imageRy, dal CRAN con la funzione install.packages(), il pacchetto va inserito tra virgolette
 # imageRy è stato installato da GitHub con la funzione install_github per cui serve il pacchetto devtools installato dal CRAN
 
 # install.packages("terra")
@@ -17,7 +17,7 @@ library(ggplot2)   # pacchetto R specializzato nella creazione di grafici
 library(patchwork)  # pacchetto R specializzato nella composizioni di più grafici
 library(viridis) # pacchetto R per l’utilizzo di palette di colori Colorblind-Friendly
 
-# dopo aver installato i pacchetti questi si richiamano con la funzione library() oppure con la funzione require()
+# dopo aver installato i pacchetti questi si richiamano con la funzione library()
 # non vanno messe le virgolette con la funzione library perché sono già dentro ad R dato che il pacchetto è già stato installato
 
 setwd("/Users/benedettaterzi/Library/CloudStorage/OneDrive-AlmaMaterStudiorumUniversitàdiBologna/Documents/R") # uso questa funzione set working directory per impostare la directory 
@@ -44,7 +44,7 @@ plot(v23f)
 
 dev.off()
 
-# utilizzo due immagini per lo stesso anno siccome l’immagine «true colors» ha le bande R,G e B e in quella «false colors» nir, R e G.
+# utilizzo due immagini per lo stesso anno siccome l’immagine «true colors» ha le bande R,G e B e quella «false colors» nir, R e G.
 # assegno le tre bande R G e B dalla prima immagine e la banda nir dalla seconda immagine a degli oggetti poi unisco le quattro bande
 
 br15<-v15[[1]]  # banda del rosso
@@ -96,18 +96,20 @@ dev.off()
 
 f15<-freq(band15c) # calcolo della frequenza di ciascun cluster (classe) ottenuto dalla classificazione
 tot15<-ncell(band15c) # calcolo del numero totale di celle (pixel)
-prop15=f15/tot15 # calcolo della proporzione delle classi
-perc15=prop15*100 # calcolo della percentuale delle classi 
 
 f23<-freq(band23c) 
 tot23<-ncell(band23c)
-prop23=f23/tot23
-perc23=prop23*100
 
 tot15
 tot23 # numero di pixel totale è lo stesso 
 
-# creazione del dataframe con i dati
+prop15=f15/tot15 # calcolo della proporzione delle classi
+perc15=prop15*100 # calcolo della percentuale delle classi 
+
+prop23=f23/tot23
+perc23=prop23*100
+
+# creazione del dataframe con i le classi e le percentuali prima calcolate
 datav<-data.frame( anno = c(2015, 2015, 2023, 2023), classe = c("uomo", "foresta", "uomo", "foresta"), valori = c(35.5, 64.5, 38.1, 61.9))
 
 # creazione del grafico con la funzione ggplot() del pacchetto ggplot2
@@ -167,7 +169,7 @@ plot(difNDVI,col=turbo(100))
 
 dev.off()
 
-# per meglio visualizzare possiamo creare un istogramma con la funzione hist() con il valore su base 10 di pixel e i valori di NDVI
+# per meglio visualizzare questa differenza possiamo creare un istogramma con la funzione hist() passsando il valore su base 10 di pixel e i valori di NDVI
 
 par(mfrow=c(1,2))
 ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
@@ -180,12 +182,12 @@ dev.off()
 # copertura forestale calata di valori non elevati (3% circa)
 # NDVI nel complesso no variazioni significative
 
-# misura della variabilità/eterogeneità dello spazio con metodo moving window 
-# si calcola su una variabile la variabilità, quindi su una banda, in questo caso la calcolo sulla banda nir
+# misura della variabilità dello spazio con metodo moving window 
+# si calcola su una variabile la variabilità, ad esempio su una banda, in questo caso la calcolo sulla banda nir
 nir15<-band15[[4]] # assegno la banda nir, la quarta, ad un oggetto
 sd3nir15<-focal(nir15,matrix(1/9,3,3), fun=sd) # uso la funzione focal()
 
-# focal() mi permette di calcolare la variabilità, definisco la matrice (la finestra) in questo caso 9 pixel disposti 3x3 e  la statistica in questo caso fun=sd (function = standard deviation)
+# focal() mi permette di calcolare la variabilità, definisco la matrice (la finestra) in questo caso 9 pixel disposti 3x3 pixel e anche la statistica che uso in questo caso fun=sd (function = standard deviation)
 # la dimensione della finestra la scelgo io 
 # la finestra calcola in questo caso la deviazione standard per i pixel presenti all’interno della finestra stessa e il valore viene assegnato al pixel centrale della finestra in un nuovo file raster poi si sposta e ripete il calcolo e così passa su tutta l’immagine
 

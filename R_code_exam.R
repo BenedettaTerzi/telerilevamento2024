@@ -165,9 +165,9 @@ par(mfrow=c(1,2))
 plot(difNDVI, col=cl)
 plot(difNDVI,col=turbo(100))
 
-# per meglio visualizzare possiamo creare un istogramma con la percentuale di pixel e i valori di NDVI 
-
 dev.off()
+
+# per meglio visualizzare possiamo creare un istogramma con la funzione hist() 
 
 par(mfrow=c(1,2))
 ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)

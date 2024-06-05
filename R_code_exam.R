@@ -124,7 +124,8 @@ ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) + geom_bar(st
 # in questo modo abbiamo analizzato cambiamenti nello spazio tramite classificazione
 
 # calcolo DVI (Difference Vegetation Index) e NDVI (normalized difference vegetation index)
-# indice usato per calcolare salute e densità della vegetazione, si usano due bande nir e rosso (o nir e blu)
+# indice usato per calcolare salute e densità della vegetazione, si usano due bande nir e rosso
+# posso usare anche nir e blu siccome sia rosso che blu vengono assorbiti
 # lo calcolo facendo (NIR - Red)
 # faccio una differenza, un’operazione matematica di sottrazione di pixel di una banda da un’altra banda
 # siccome l’immagine ha 8 bit (2^8 = 256) i valori possono andare da -255 a +255 

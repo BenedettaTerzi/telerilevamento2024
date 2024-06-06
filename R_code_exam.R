@@ -110,11 +110,11 @@ prop23=f23/tot23
 perc23=prop23*100
 
 # creazione del dataframe con i le classi e le percentuali prima calcolate
-datav<-data.frame(anno=c(2015, 2015, 2023, 2023), classe=c("uomo", "foresta", "uomo", "foresta"), valori=c(35.5, 64.5, 38.1, 61.9))
+datav<-data.frame(anno=c(2015,2015,2023,2023), classe=c("uomo","foresta","uomo","foresta"), valori=c(35.5,64.5,38.1,61.9))
 
 # creazione del grafico con la funzione ggplot() del pacchetto ggplot2
 
-ggplot(datav, aes(x=as.factor(anno), y=valori, fill=classe)) + geom_bar(stat="identity", position="dodge") + labs(title="Distribuzione classi per anno", x ="Anno", y="Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values=c("foresta"="forestgreen", "uomo"="darkslateblue")) + theme_bw()
+ggplot(datav,aes(x=as.factor(anno),y=valori, fill=classe)) + geom_bar(stat="identity",position="dodge") + labs(title="Distribuzione classi per anno",x="Anno", y="Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values=c("foresta"="forestgreen", "uomo"="darkslateblue")) + theme_bw()
 
 # aes(x = as.factor(anno), y = valori, fill = classe) specifica che anno è sull'asse x, valori sull'asse y, e le barre sono riempite in base alla classe
 # geom_bar(stat = "identity", position = "dodge") uso geom_bar per creare grafico a barre e stat=identity specifica che i dati vengono usati così come sono e position = “dodge" per affiancare le barre 
@@ -136,9 +136,9 @@ cl<- colorRampPalette(c("black","white","red"))(100) # crea una scala di colori 
 par(mfrow=c(1,2))
 
 dvi15=band15[[4]]-band15[[1]]
-plot(dvi15, col=cl) 
+plot(dvi15,col=cl) 
 dvi23=band23[[4]]-band23[[1]]
-plot(dvi23, col=cl)
+plot(dvi23,col=cl)
 
 dev.off()
 
@@ -148,12 +148,12 @@ dev.off()
 par(mfrow=c(2,2))
 
 ndvi15=dvi15/(band15[[4]]+band15[[1]]) 
-plot(ndvi15, col=cl)
-plot(ndvi15, col=turbo(100)) # lo plotto con una palette adatta alle persone con daltonismo
+plot(ndvi15,col=cl)
+plot(ndvi15,col=turbo(100)) # lo plotto con una palette adatta alle persone con daltonismo
 
-ndvi23 = dvi23/(band23[[4]]+band23[[1]]) 
-plot(ndvi23, col=cl)
-plot(ndvi23, col=turbo(100))
+ndvi23=dvi23/(band23[[4]]+band23[[1]]) 
+plot(ndvi23,col=cl)
+plot(ndvi23,col=turbo(100))
 
 dev.off()
 
@@ -162,9 +162,9 @@ dev.off()
 # valori negativi significa NDVI è diminuito
 # valori simili a zero: no cambiamenti nella vegetazione
 
-difNDVI=ndvi23 - ndvi15
+difNDVI=ndvi23-ndvi15
 par(mfrow=c(1,2))
-plot(difNDVI, col=cl)
+plot(difNDVI,col=cl)
 plot(difNDVI,col=turbo(100))
 
 dev.off()
@@ -172,8 +172,8 @@ dev.off()
 # per meglio visualizzare questa differenza possiamo creare un istogramma con la funzione hist() con il valore su base 10 di pixel e i valori di NDVI
 
 par(mfrow=c(1,2))
-ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
-ist23<-hist(ndvi23, main="ndvi2023", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
+ist15<-hist(ndvi15,main="ndvi2015",xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
+ist23<-hist(ndvi23,main="ndvi2023",xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)
 # con main scelgo il nome del grafico, con nclass o breaks scelgo il numero di classi, xlab il nome della variabile di x, di default freq=T (restituisce la frequency ovvero il numero di pixel appartenente a quella classe)
 # con freq=F ci restituisce density (non è la percentuale ma il valore su base 10)
 
@@ -185,7 +185,7 @@ dev.off()
 # misura della variabilità dello spazio con metodo moving window 
 # si calcola su una variabile la variabilità, ad esempio su una banda, in questo caso la calcolo sulla banda nir
 nir15<-band15[[4]] # assegno la banda nir, la quarta, ad un oggetto
-sd3nir15<-focal(nir15,matrix(1/9,3,3), fun=sd) # uso la funzione focal()
+sd3nir15<-focal(nir15,matrix(1/9,3,3),fun=sd) # uso la funzione focal()
 
 # focal() mi permette di calcolare la variabilità, definisco la matrice (la finestra) in questo caso 9 pixel disposti 3x3 pixel e anche la statistica che uso in questo caso fun=sd (function = standard deviation)
 # la dimensione della finestra la scelgo io 
@@ -196,8 +196,8 @@ nir23<-band23[[4]]
 sd3nir23<-focal(nir23,matrix(1/9,3,3), fun=sd)
 
 par(mfrow=c(1,2))
-plot(sd3nir15, col=turbo(100))
-plot(sd3nir23, col=turbo(100))
+plot(sd3nir15,col=turbo(100))
+plot(sd3nir23,col=turbo(100))
 
 # non c’è una elevata differenza tra il 2015 e il 2023
 
@@ -252,7 +252,8 @@ sd3pca23<-focal(pca23,matrix(1/9,3,3), fun=sd)
 dev.off()
 
 par(mfrow=c(1,2))
-plot(sd3pca15, col=turbo(100))
-plot(sd3pca23, col=turbo(100))
+plot(sd3pca15,col=turbo(100))
+plot(sd3pca23,col=turbo(100))
 # non ci sono differenze notevoli con la variabilità calcolata sul nir e non ci sono differenze notevoli tra i due anni
+
 

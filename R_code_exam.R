@@ -114,7 +114,7 @@ datav<-data.frame(anno=c(2015, 2015, 2023, 2023), classe=c("uomo", "foresta", "u
 
 # creazione del grafico con la funzione ggplot() del pacchetto ggplot2
 
-ggplot(datav, aes(x = as.factor(anno), y=valori, fill=classe)) + geom_bar(stat="identity", position="dodge") + labs(title="Distribuzione classi per anno", x ="Anno", y="Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values=c("foresta"="forestgreen", "uomo"="darkslateblue")) + theme_bw()
+ggplot(datav, aes(x=as.factor(anno), y=valori, fill=classe)) + geom_bar(stat="identity", position="dodge") + labs(title="Distribuzione classi per anno", x ="Anno", y="Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values=c("foresta"="forestgreen", "uomo"="darkslateblue")) + theme_bw()
 
 # aes(x = as.factor(anno), y = valori, fill = classe) specifica che anno è sull'asse x, valori sull'asse y, e le barre sono riempite in base alla classe
 # geom_bar(stat = "identity", position = "dodge") uso geom_bar per creare grafico a barre e stat=identity specifica che i dati vengono usati così come sono e position = “dodge" per affiancare le barre 
@@ -147,7 +147,7 @@ dev.off()
 
 par(mfrow=c(2,2))
 
-ndvi15 = dvi15/(band15[[4]]+band15[[1]]) 
+ndvi15=dvi15/(band15[[4]]+band15[[1]]) 
 plot(ndvi15, col=cl)
 plot(ndvi15, col=turbo(100)) # lo plotto con una palette adatta alle persone con daltonismo
 

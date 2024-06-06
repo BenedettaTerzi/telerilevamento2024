@@ -110,11 +110,11 @@ prop23=f23/tot23
 perc23=prop23*100
 
 # creazione del dataframe con i le classi e le percentuali prima calcolate
-datav<-data.frame( anno = c(2015, 2015, 2023, 2023), classe = c("uomo", "foresta", "uomo", "foresta"), valori = c(35.5, 64.5, 38.1, 61.9))
+datav<-data.frame(anno=c(2015, 2015, 2023, 2023), classe=c("uomo", "foresta", "uomo", "foresta"), valori=c(35.5, 64.5, 38.1, 61.9))
 
 # creazione del grafico con la funzione ggplot() del pacchetto ggplot2
 
-ggplot(datav, aes(x = as.factor(anno), y = valori, fill = classe)) + geom_bar(stat = "identity", position = "dodge") + labs(title = "Distribuzione classi per anno", x = "Anno", y = "Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values = c("foresta" = "forestgreen", "uomo" = "darkslateblue")) + theme_bw()
+ggplot(datav, aes(x = as.factor(anno), y=valori, fill=classe)) + geom_bar(stat="identity", position="dodge") + labs(title="Distribuzione classi per anno", x ="Anno", y="Valori percentuali") + ylim(c(0, 75)) + scale_fill_manual(values=c("foresta"="forestgreen", "uomo"="darkslateblue")) + theme_bw()
 
 # aes(x = as.factor(anno), y = valori, fill = classe) specifica che anno è sull'asse x, valori sull'asse y, e le barre sono riempite in base alla classe
 # geom_bar(stat = "identity", position = "dodge") uso geom_bar per creare grafico a barre e stat=identity specifica che i dati vengono usati così come sono e position = “dodge" per affiancare le barre 
@@ -135,9 +135,9 @@ cl<- colorRampPalette(c("black","white","red"))(100) # crea una scala di colori 
 
 par(mfrow=c(1,2))
 
-dvi15 = band15[[4]]-band15[[1]]
+dvi15=band15[[4]]-band15[[1]]
 plot(dvi15, col=cl) 
-dvi23 = band23[[4]]-band23[[1]]
+dvi23=band23[[4]]-band23[[1]]
 plot(dvi23, col=cl)
 
 dev.off()
@@ -162,7 +162,7 @@ dev.off()
 # valori negativi significa NDVI è diminuito
 # valori simili a zero: no cambiamenti nella vegetazione
 
-difNDVI = ndvi23 - ndvi15
+difNDVI=ndvi23 - ndvi15
 par(mfrow=c(1,2))
 plot(difNDVI, col=cl)
 plot(difNDVI,col=turbo(100))

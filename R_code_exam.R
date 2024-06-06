@@ -169,7 +169,7 @@ plot(difNDVI,col=turbo(100))
 
 dev.off()
 
-# per meglio visualizzare questa differenza possiamo creare un istogramma con la funzione hist() passsando il valore su base 10 di pixel e i valori di NDVI
+# per meglio visualizzare questa differenza possiamo creare un istogramma con la funzione hist() con il valore su base 10 di pixel e i valori di NDVI
 
 par(mfrow=c(1,2))
 ist15<-hist(ndvi15, main="ndvi2015", xlab="ndvi",nclass=20,freq=F,ylim=c(0,5),col=blues9)

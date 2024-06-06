@@ -75,13 +75,6 @@ im.plotRGB(band23, 1,2,4)
 
 dev.off()
 
-# se uso la funzione im.plotRGB.auto() devo dichiarare il nome dell'immagine e mi prende in automatico le prime tre bande
-par(mfrow=c(1,2))
-im.plotRGB.auto(band15)
-im.plotRGB.auto(band23)
-
-dev.off()
-
 # classificazione di un'immagine e calcolo frequenza di ciascuna classe, numero totale di celle (pixel), proporzione e percentuale dei cluster
 # si utilizza la funzione im.classify(), funzione del pacchetto imageRy, dichiarando l'immagine e il numero di clusters, in questo caso sono 2 uomo e vegetazione
 # vengono create delle classi/clusters in base al comportamento dei pixel nello spazio spettrale (riflettanza), pixel estratti casualmente quindi quale colore è associato a ciascuna classe è casuale 
